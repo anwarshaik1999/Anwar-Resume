@@ -4,8 +4,12 @@ html, body {
     font: 18px "Comic Sans MS", sans-serif;
     box-sizing: content-box;
 }
+body {
+    margin: 0;
+    overscroll-behavior: none;
+}
 body:active{
-    font: 17.8px "Comic Sans MS";
+    font: 17.5px "Comic Sans MS";
 }
 article{
     right: 0;
@@ -56,30 +60,27 @@ ul{
 ul li {
     float: left;
 }
-
-li a {
-    display: block;
+/* Right side border, and padding */
+ul li {
     color: black;
-    font-size: 0px;
+    font-size: 14px;
     border-right: 1px solid black;
     padding-right: 16px;
     padding-left: 16px;
     text-align: right;
 }
-
-ul li:first-child a {
+/* To remove left padding and right border for first and last child's */
+ul li:first-child {
     padding-left: 0px;
 }
 
-ul li:last-child a {
+ul li:last-child {
     border: none;
 }
-
+/*
 li :hover {
     font-size: 14px;
     text-transform: capitalize;
     display: block;
 }
-li img:hover {
-    display: none;
-}
+*/

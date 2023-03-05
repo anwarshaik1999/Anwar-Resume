@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hover Example</title>
+	<style>
+		ul li {
+			position: relative;
+			list-style: none;
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		ul li img {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		ul li p {
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin: 0;
+			padding: 10px;
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		ul li:hover img {
+			opacity: 0;
+		}
+
+		ul li:hover p {
+			opacity: 1;
+		}
+
+		/* Add a class to each list item to target them with CSS */
+		.list-item {
+			position: relative;
+			list-style: none;
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.list-item img {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.list-item p {
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin: 0;
+			padding: 10px;
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		.list-item:hover img {
+			opacity: 0;
+		}
+
+		.list-item:hover p {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="list-item">
+			<img src="https://api.iconify.design/bx:bxs-phone-call.svg" width="20" height="20">
+			<p>Example Text 1</p>
+		</li>
+		<li class="list-item">
+			<img src="https://api.iconify.design/bx:bxs-phone-call.svg" width="20" height="20">
+			<p>Example Text 2</p>
+		</li>
+		<li class="list-item">
+			<img src="https://api.iconify.design/bx:bxs-phone-call.svg" width="20" height="20">
+			<p>Example Text 3</p>
+		</li>
+	</ul>
+
+</body>
+</html>
