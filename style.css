@@ -2,7 +2,7 @@ html,
 body {
     height: 100dvh;
     cursor: default;
-    font: 18px "Comic Sans MS", sans-serif;
+    font: 18px sans-serif, "Comic Sans MS";
     box-sizing: content-box;
 }
 
@@ -12,7 +12,7 @@ body {
 }
 
 body:active {
-    font: 17.5px "Comic Sans MS";
+    font: 18px "Comic Sans MS";
 }
 
 article {
