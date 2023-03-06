@@ -1,15 +1,118 @@
+html,
+body {
+    height: 100dvh;
+    cursor: default;
+    font: 18px "Comic Sans MS", sans-serif;
+    box-sizing: content-box;
+}
+
+body {
+    margin: 0;
+    overscroll-behavior: none;
+}
+
+body:active {
+    font: 17.5px "Comic Sans MS";
+}
+
+article {
+    width: 50%;
+    right: 0;
+    background: linear-gradient(to bottom right, white, rgb(193, 100, 100));
+}
+
+article:hover {
+    right: 0;
+    background: linear-gradient(to bottom right, rgb(193, 100, 100), white);
+}
+
+aside {
+    width: 50%;
+    left: 0;
+    background: linear-gradient(to bottom right, black, black);
+}
+
+article,
+aside {
+    display: flex;
+    position: fixed;
+    min-height: 100%;
+    top: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: 55%;
+    padding-bottom: 1%;
+    /*outline: 1px solid limegreen !important;*/
+}
+
+a {
+    color: black;
+}
+
+/*list horizontal design */
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    float: left;
+}
+
+/* Right side border, and padding */
+ul li {
+    color: black;
+    font-size: 0px;
+    border-right: 1px solid black;
+    padding-right: 12px;
+    padding-left: 12px;
+    text-align: right;
+}
+
+/* To remove left padding and right border for first and last child's */
+ul li:first-child {
+    padding-left: 0px;
+}
+
+ul li:last-child {
+    border: none;
+}
+li:hover > img {
+    display: none;
+}
+li:hover > a {
+    opacity: 1;
+    font-size: 12px;
+}
+/**/
+/*
+li :hover {
+    font-size: 14px;
+    text-transform: capitalize;
+    display: block;
+}
+*/
+/*
+
 html, body {
     height: 100dvh;
     cursor: default;
     font: 18px "Comic Sans MS", sans-serif;
     box-sizing: content-box;
 }
-body {
-    margin: 0;
-    overscroll-behavior: none;
-}
 body:active{
-    font: 17.5px "Comic Sans MS";
+    font: 17.8px "Comic Sans MS";
 }
 article{
     right: 0;
@@ -43,13 +146,11 @@ footer {
     bottom: 0;
     left: 55%;
     padding-bottom: 1%;
-    /*outline: 1px solid limegreen !important;*/
 }
 
 a {
     color: black;
 }
-/*list horizontal design */
 
 ul{
     margin: 0;
@@ -60,27 +161,31 @@ ul{
 ul li {
     float: left;
 }
-/* Right side border, and padding */
-ul li {
+
+li a {
+    display: block;
     color: black;
-    font-size: 14px;
+    font-size: 0px;
     border-right: 1px solid black;
     padding-right: 16px;
     padding-left: 16px;
     text-align: right;
 }
-/* To remove left padding and right border for first and last child's */
-ul li:first-child {
+
+ul li:first-child a {
     padding-left: 0px;
 }
 
-ul li:last-child {
+ul li:last-child a {
     border: none;
 }
-/*
+
 li :hover {
     font-size: 14px;
     text-transform: capitalize;
     display: block;
+}
+li img:hover {
+    display: none;
 }
 */
