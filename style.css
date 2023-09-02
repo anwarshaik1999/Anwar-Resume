@@ -16,7 +16,7 @@ body:active {
 }
 
 article {
-    width: 50%;
+    width: 60%;
     right: 0;
     background: linear-gradient(to bottom right, white, rgb(193, 100, 100));
 }
