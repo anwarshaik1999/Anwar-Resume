@@ -11,25 +11,26 @@ body {
     overscroll-behavior: none;
 }
 
-body:active {
+/* body:active {
     font: 18px "Comic Sans MS";
-}
+} */
 
 article {
-    width: 60%;
+    width: 55%;
     right: 0;
-    background: linear-gradient(to bottom right, white, rgb(193, 100, 100));
+    background: linear-gradient(to bottom right, white, #bd9ee5ff); /*rgb(193, 100, 100)*/
 }
 
 article:hover {
     right: 0;
-    background: linear-gradient(to bottom right, rgb(193, 100, 100), white);
+    background: linear-gradient(to bottom right, #bd9ee5ff, white);
 }
 
 aside {
-    width: 40%;
+    width: 45%;
     left: 0;
-    background: linear-gradient(to bottom right, black, black);
+    background: linear-gradient(to bottom right, #bd9ee5ff, #a283c8);
+    padding-bottom: 5%;
 }
 
 article,
@@ -49,8 +50,8 @@ footer {
     color: black;
     position: absolute;
     bottom: 0;
-    left: 55%;
-    padding-bottom: 1%;
+    left: 2.5%; /*45%*/
+    padding-bottom: 1.5%;
     /* Outline: 1px solid limegreen !important;*/
 }
 
