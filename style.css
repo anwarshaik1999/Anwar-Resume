@@ -27,7 +27,7 @@ article:hover {
 }
 
 aside {
-    width: 50%;
+    width: 40%;
     left: 0;
     background: linear-gradient(to bottom right, black, black);
 }
@@ -51,7 +51,7 @@ footer {
     bottom: 0;
     left: 55%;
     padding-bottom: 1%;
-    /*outline: 1px solid limegreen !important;*/
+    /* Outline: 1px solid limegreen !important;*/
 }
 
 a {
@@ -95,97 +95,3 @@ li:hover > a {
     opacity: 1;
     font-size: 12px;
 }
-/**/
-/*
-li :hover {
-    font-size: 14px;
-    text-transform: capitalize;
-    display: block;
-}
-*/
-/*
-
-html, body {
-    height: 100dvh;
-    cursor: default;
-    font: 18px "Comic Sans MS", sans-serif;
-    box-sizing: content-box;
-}
-body:active{
-    font: 17.8px "Comic Sans MS";
-}
-article{
-    right: 0;
-    background: linear-gradient(to bottom right, white, rgb(193, 100, 100));
-}
-article:hover {
-    right: 0;
-    background: linear-gradient(to bottom right, rgb(193, 100, 100),white);
-}
-aside {
-    left: 0;
-    background: linear-gradient(to bottom right, black, black);
-}
-
-article, aside{
-    display: flex;
-    position: fixed;
-    width: 50%;
-    min-height: 100%;
-    top: 0;
-    flex-direction: column;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-}
-
-footer {
-    font-size: 14px;
-    color: black;
-    position: absolute;
-    bottom: 0;
-    left: 55%;
-    padding-bottom: 1%;
-}
-
-a {
-    color: black;
-}
-
-ul{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-ul li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: black;
-    font-size: 0px;
-    border-right: 1px solid black;
-    padding-right: 16px;
-    padding-left: 16px;
-    text-align: right;
-}
-
-ul li:first-child a {
-    padding-left: 0px;
-}
-
-ul li:last-child a {
-    border: none;
-}
-
-li :hover {
-    font-size: 14px;
-    text-transform: capitalize;
-    display: block;
-}
-li img:hover {
-    display: none;
-}
-*/
