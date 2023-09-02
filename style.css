@@ -2,7 +2,7 @@ html,
 body {
     height: 100dvh;
     cursor: default;
-    font: 18px sans-serif, "Comic Sans MS";
+    font: 18px "Chakra Petch", "Comic Sans MS", "sans-serif";
     box-sizing: content-box;
 }
 
