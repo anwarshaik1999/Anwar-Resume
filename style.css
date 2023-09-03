@@ -80,22 +80,20 @@ ul li:last-child {
     border: none;
 }
 
-li > img {
-    transform: scale(1.25);
-    visibility: visible;
-}
-
 li:hover > img, li > img {
     transform: scale(0);
     display: block;
 }
-
+li > img {
+    transform: scale(1.25);
+    visibility: visible;
+}
+li:hover > a, li > a {
+    opacity: 1;
+    font-size: 14px;
+}
 li > a {
     position: relative;
     font-size: 0;
     transition: font-size 0.3s ease-in-out;
-}
-li:hover > a {
-    opacity: 1;
-    font-size: 14px;
 }
