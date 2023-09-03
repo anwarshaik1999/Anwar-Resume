@@ -4,16 +4,9 @@ body {
     cursor: default;
     font: 18px "Chakra Petch", "Comic Sans MS", "sans-serif";
     box-sizing: content-box;
-}
-
-body {
     margin: 0;
     overscroll-behavior: none;
 }
-
-/* body:active {
-    font: 18px "Comic Sans MS";
-} */
 
 article {
     width: 55%;
@@ -22,7 +15,6 @@ article {
 }
 
 article:hover {
-    right: 0;
     background: linear-gradient(to bottom right, #bd9ee5ff, white);
 }
 
@@ -51,7 +43,7 @@ footer {
     position: absolute;
     bottom: 0;
     left: 2.5%; /*45%*/
-    padding-bottom: 1.5%;
+    padding-bottom: 2.5%;
     /* Outline: 1px solid limegreen !important;*/
 }
 
@@ -60,25 +52,23 @@ a {
 }
 
 /*list horizontal design */
-
 ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-ul li {
-    float: left;
-}
-
 /* Right side border, and padding */
 ul li {
+    float: left;
     color: black;
     font-size: 0px;
     border-right: 1px solid black;
     padding-right: 12px;
     padding-left: 12px;
-    text-align: right;
+    text-align: center;
+    max-height: 16px;
+    align-items: center;
 }
 
 /* To remove left padding and right border for first and last child's */
@@ -89,10 +79,23 @@ ul li:first-child {
 ul li:last-child {
     border: none;
 }
-li:hover > img {
-    display: none;
+
+li > img {
+    transform: scale(1.25);
+    visibility: visible;
+}
+
+li:hover > img, li > img {
+    transform: scale(0);
+    display: block;
+}
+
+li > a {
+    position: relative;
+    font-size: 0;
+    transition: font-size 0.3s ease-in-out;
 }
 li:hover > a {
     opacity: 1;
-    font-size: 12px;
+    font-size: 14px;
 }
