@@ -57,6 +57,7 @@ a {
 
 img {
     pointer-events: none;
+    user-select: none;
 }
 
 /*list horizontal design */
@@ -113,12 +114,7 @@ div {
     overflow:scroll;
     scroll-behavior: smooth;
 }
-/* div > section {
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    height: 100vh;
-} */
+
 .main1{
     justify-content: center;
     align-items: center;
@@ -127,5 +123,4 @@ div {
     display: flex;
     scroll-snap-align: start;
     margin: auto;
-
 }
