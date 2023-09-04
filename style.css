@@ -1,3 +1,6 @@
+::-webkit-scrollbar {
+    display: none;
+}
 html,
 body {
     height: 100dvh;
@@ -8,6 +11,13 @@ body {
     overscroll-behavior: none;
 }
 
+aside {
+    width: 45%;
+    left: 0;
+    background: linear-gradient(to bottom right, #bd9ee5ff, #a283c8);
+    padding-bottom: 5%;
+}
+
 article {
     width: 55%;
     right: 0;
@@ -16,13 +26,7 @@ article {
 
 article:hover {
     background: linear-gradient(to bottom right, #bd9ee5ff, white);
-}
-
-aside {
-    width: 45%;
-    left: 0;
-    background: linear-gradient(to bottom right, #bd9ee5ff, #a283c8);
-    padding-bottom: 5%;
+    overflow: scroll;
 }
 
 article,
@@ -100,4 +104,27 @@ li > a {
     position: relative;
     font-size: 0;
     transition: font-size 0.3s ease-in-out;
+}
+
+div {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    font-size:16px;
+    overflow:scroll;
+    scroll-behavior: smooth;
+}
+/* div > section {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    height: 100vh;
+} */
+.main1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    scroll-snap-align: start;
+
 }
