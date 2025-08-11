@@ -1,88 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="author" content="Anwar Shaik" />
-    <meta name="description" content="Anwar Shaik's Portfolio website." />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Anwar &bull; Portfolio</title>
-    <!--
-        Add icon in the title https://icones.js.org/collection/healthicons?s=A . Add style sheet
-    -->
-    <link rel="icon" href="https://api.iconify.design/healthicons:a-negative.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anwar Shaik — Software Engineer · AI/Cloud/DevOps</title>
+  <meta name="description" content="Anwar Shaik — Software Engineer focused on AI, Cloud, DevOps, and building useful systems. Projects: CAPTCHA OCR, License Plate Recognition, Fargate migrations, observability, and more." />
+  <meta name="theme-color" content="#00ffc6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d10;           /* near-black */
+      --card:#0e1116;         /* deep slate */
+      --fg:#e8f0ff;           /* light text */
+      --muted:#9aa5b1;        /* secondary text */
+      --accent:#00ffc6;       /* neon cyan */
+      --accent-2:#00ff5e;     /* neon green */
+      --danger:#ff4d94;       /* neon magenta */
+      --ring:0 0 0 2px var(--accent),0 0 24px var(--accent);
+      --radius:16px;
+      --maxw:1080px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 20% -10%,rgba(0,255,198,.08),transparent 55%),radial-gradient(900px 700px at 120% 0,rgba(0,255,94,.06),transparent 60%),var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Ubuntu,"Apple Color Emoji","Segoe UI Emoji";}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px 120px}
+    header{display:flex;align-items:center;gap:18px;padding:14px 0;position:sticky;top:0;background:linear-gradient(180deg,rgba(11,13,16,.96),rgba(11,13,16,.70));backdrop-filter:saturate(1.2) blur(8px);z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
+    .brand{font-family:"JetBrains Mono",monospace;font-weight:800;letter-spacing:.5px}
+    .brand .cursor{display:inline-block;width:10px;height:20px;background:var(--accent);margin-left:4px;opacity:.85;animation:blink 1s steps(2,end) infinite}
+    @keyframes blink{50%{opacity:.15}}
+    nav{margin-left:auto;display:flex;gap:18px;font-family:"JetBrains Mono",monospace;font-size:14px}
+    nav a{opacity:.9}
+
+    /* Hero Terminal */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch;margin-top:24px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:0 8px 40px rgba(0,0,0,.25);}
+    .terminal{position:relative;padding:18px;border-radius:var(--radius);
+      /* Neon edge glow effect */
+      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 28px rgba(0,255,198,.12)
+    }
+    .terminal::after{content:"";position:absolute;inset:-2px;border-radius:var(--radius);background:radial-gradient(120% 60% at 0% 0%,rgba(0,255,198,.35),transparent 60%),radial-gradient(120% 60% at 100% 0%,rgba(0,255,94,.25),transparent 60%);filter:blur(14px);opacity:.45;animation:pulseGlow 4s ease-in-out infinite alternate;pointer-events:none}
+    .terminal:hover::after{opacity:.75}
+    @keyframes pulseGlow{from{opacity:.35}to{opacity:.7}}
+
+    .term-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .dot{width:10px;height:10px;border-radius:50%;}
+    .dot.red{background:#ff5f56}.dot.yellow{background:#ffbd2e}.dot.green{background:#27c93f}
+    .term-body{min-height:240px;font-family:"JetBrains Mono",monospace;font-size:14px;line-height:1.6;}
+    .prompt{color:var(--accent)}
+    .input{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-top:10px}
+    .input input{flex:1;background:#0a0c0f;border:1px solid rgba(255,255,255,.08);color:var(--fg);padding:10px 12px;border-radius:10px;font-family:"JetBrains Mono",monospace}
+    .input input:focus{outline:none;box-shadow:var(--ring)}
+    .suggest{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .cmd-chip{cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+    .cmd-chip:hover{box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 22px rgba(0,255,198,.2) inset}
+
+    /* Avatar */
+    .avatar{display:flex;align-items:center;justify-content:center;padding:20px}
+    .avatar .frame{width:100%;max-width:360px;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(60% 60% at 50% 35%,rgba(0,255,198,.25),transparent),linear-gradient(140deg,#0f1320,#0b0d10 55%);border:2px solid rgba(255,255,255,.06);position:relative;box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(0,255,198,.18) inset}
+    .avatar .frame img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:grayscale(.1) contrast(1.05)}
+
+    /* Sections */
+    section{margin-top:48px}
+    h2{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:20px;letter-spacing:.4px;margin:6px 0 16px}
+    .kicker{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:800px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+
+    .proj{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));}
+    .proj header{position:relative;inset:auto;display:flex;gap:10px;background:transparent;border:none;padding:0}
+    .proj h3{margin:0;font-size:17px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px;color:var(--muted)}
+    .stack{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .impact{color:#b4ffea;font-family:"JetBrains Mono",monospace;font-size:12px;margin-top:6px}
+
+    .runbook pre, .proj pre{background:#0a0c0f;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;overflow:auto}
+    code{font-family:"JetBrains Mono",monospace}
+
+    .note{color:var(--muted);font-size:14px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+    footer{margin-top:60px;padding:28px 8px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:var(--muted);font-size:14px}
+
+    /* Arcade mode */
+    .arcade *{text-shadow:0 0 8px rgba(0,255,198,.28)}
+    .arcade .brand,.arcade h1,.arcade h2,.arcade h3{font-family:"VT323",monospace;letter-spacing:1px}
+    .arcade .wrap{background-image:radial-gradient(800px 300px at 50% 0,rgba(0,255,94,.08),transparent)}
+    .arcade .scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.35) 3px 3px)}
+
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace}
+    .btn:hover{box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 22px rgba(0,255,198,.2) inset}
+
+    .hide{display:none}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Anwar Shaik",
+    "jobTitle":"Software Engineer",
+    "email":"mailto:anwarshaik1999@gmail.com",
+    "address":{"@type":"PostalAddress","addressLocality":"Austin","addressRegion":"TX","addressCountry":"US"},
+    "url":"https://anwarshaik1999.github.io",
+    "knowsAbout":["AI","Machine Learning","Computer Vision","AWS","DevOps","Java","Spring Boot","React","Next.js","Docker","Kubernetes"],
+    "sameAs":["https://github.com/anwarshaik1999","https://www.linkedin.com/in/anwar-shaik1/"]
+  }
+  </script>
 </head>
-
 <body>
-    <aside>
-        <img src="https://api.iconify.design/healthicons/a.svg?color=white" alt="logo" width="256" height="256" />
-    </aside>
-    <article>
-        <div>
-            <div class="main1">
-                <div style="height: min-content; margin: auto">
-                    <h1>I'm Anwar Shaik</h1>
-                    <p>
-                        A <u>Computer Science</u> graduate student at Wichita State
-                        University.
-                    </p>
-                </div>
-            </div>
-            <div class="main1">
-                <div style="height: min-content; margin: auto">
-                    <h1>Working on it!</h1>
-                </div>
-            </div>
-            <div class="main1">
-                <div style="height: min-content; margin: auto">
-                    <h1>YEP, Still Working on it!</h1>
-                </div>
-            </div>
-            <div class="main1">
-                <div style="height: min-content; margin: auto">
-                    <h1>Thanks for the vist!</h1>
-                </div>
-            </div>
-        </div>
-    </article>
-    <footer>
-        <p>
-            <b>Currently:</b>
-            Pursuing Masters in Computer Science at
-            <a href="https://www.wichita.edu/">WSU</a> | Graduate Teaching
-            Assistant.
-        </p>
-        <p>
-            <b>Ex:</b> Senior Systems Engineer; Infosys - [ Nov-2020 to Dec-2022 ].
-        </p>
-        <ul>
-            <li>
-                <a href="https://github.com/anwarshaik1999" target="_blank">Github</a>
-                <img src="https://api.iconify.design/bx:bxl-github.svg" />
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/anwar-shaik1/" target="_blank">Linkedin</a>
-                <img src="https://api.iconify.design/bx:bxl-linkedin-square.svg" />
-            </li>
-            <li>
-                <a href="Assets/Anwar_Shaik_Resume_Software_Developer.pdf" target="_blank">Resume</a>
-                <img src="https://api.iconify.design/bx:bxs-file-doc.svg" />
-            </li>
-            <li>
-                <a href="tel:+1316-226-5943">+1316-226-5943</a>
-                <img src="https://api.iconify.design/bx:bxs-phone-call.svg" />
-            </li>
-            <li>
-                <!--
-                    To-do,
-                    Write a page where user can directly send the mail to me. he should be able to add subject, body.
-                -->
-                <a href="mailto:anwarshaik1999@gmail.com" target="_blank">anwarshaik1999@gmail.com</a>
-                <img src="https://api.iconify.design/bx:mail-send.svg" />
-            </li>
-        </ul>
-    </footer>
-</body>
+  <header class="wrap">
+    <div class="brand">anwar@portfolio:~$ <span class="cursor"></span></div>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#runbooks">runbooks</a>
+      <a href="#logs">startup-log</a>
+      <a href="#badminton">badminton</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
 
+  <main class="wrap">
+    <section class="hero">
+      <div class="card terminal">
+        <div class="term-head">
+          <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        </div>
+        <div class="term-body" id="term" aria-live="polite">
+          <div>Welcome. Type <span class="pill">help</span> to explore, or use the nav.</div>
+          <div><span class="prompt">anwar@portfolio:~$</span> echo "Ship fast. Automate everything."</div>
+          <div>Ship fast. Automate everything.</div>
+          <div><span class="prompt">anwar@portfolio:~$</span> whoami</div>
+          <div>Anwar Shaik — Software Engineer (AI / Cloud / DevOps) · Builder · Gamer · Badminton nerd.</div>
+        </div>
+        <div class="input">
+          <span class="prompt" aria-hidden="true">$</span>
+          <input id="cli" placeholder="Try: whoami, projects --top, runbooks list (Tab to autocomplete)" aria-label="Terminal input" />
+        </div>
+        <div class="suggest" aria-label="Command shortcuts">
+          <button class="cmd-chip" data-cmd="whoami">whoami</button>
+          <button class="cmd-chip" data-cmd="about">about</button>
+          <button class="cmd-chip" data-cmd="projects --top">projects --top</button>
+          <button class="cmd-chip" data-cmd="runbooks list">runbooks list</button>
+          <button class="cmd-chip" data-cmd="github">github</button>
+          <button class="cmd-chip" data-cmd="linkedin">linkedin</button>
+          <button class="cmd-chip" data-cmd="contact">contact</button>
+          <button class="cmd-chip" data-cmd="arcade">arcade</button>
+          <button class="cmd-chip" data-cmd="clear">clear</button>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="#projects">▶ View projects</a>
+          <a class="btn" href="Anwar_Resume_Software_Engineer.pdf">⬇ Resume (PDF)</a>
+        </div>
+      </div>
+
+      <div class="card avatar">
+        <div class="frame">
+          <img src="assets/portrait.jpg" alt="Portrait of Anwar Shaik">
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="kicker">About</div>
+      <h2>Anwar Shaik — Austin, Texas</h2>
+      <p class="note">Full‑stack engineer with 5+ years experience across startups and enterprise. I design, ship, and harden systems in AWS (ECS/Fargate, EKS, Lambda), build clean UIs in React/Next, and automate everything with CI/CD. I enjoy computer vision side projects (CAPTCHA OCR, ANPR), competitive badminton, and late‑night tuning of build pipelines.</p>
+      <div class="badges">
+        <span class="pill">AWS · Java/Spring Boot · React/Next</span>
+        <span class="pill">Docker · Kubernetes</span>
+        <span class="pill">TDD/BDD · Karate/JUnit</span>
+        <span class="pill">ML/CV: OCR, ANPR</span>
+        <span class="pill">Austin, TX</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="kicker">Projects</div>
+      <h2>Impact over hype</h2>
+      <div class="grid cols-2">
+        <article class="proj">
+          <header>
+            <h3>License Plate Recognition (ANPR)</h3>
+            <span class="pill">Masters</span>
+          </header>
+          <p>Given a car photo, detect and crop the plate, then OCR to read number and infer the Indian state. Built with OpenCV + CNN for OCR; evaluated across varied lighting/angles.</p>
+          <div class="stack"><span class="pill">Python</span><span class="pill">OpenCV</span><span class="pill">CNN</span><span class="pill">Tesseract</span></div>
+          <div class="impact">Modular pipeline (detect → rectify → OCR → state‑map).</div>
+        </article>
+        <article class="proj">
+          <header>
+            <h3>Simple CAPTCHA OCR (IIT Workshop, 2019)</h3>
+            <span class="pill">AIET</span>
+          </header>
+          <p>Segmented noisy characters and recognized text using dual CNNs (MNIST/EMNIST) with custom preprocessing (thresholding, contour cleanup, inner‑hole removal, 28×28 normalization).</p>
+          <div class="stack"><span class="pill">Python</span><span class="pill">CNN</span><span class="pill">MNIST/EMNIST</span><span class="pill">OpenCV</span></div>
+          <div class="impact">Learned: segmentation‑resistance pitfalls; proposed unified 62‑class hybrid model.</div>
+        </article>
+        <article class="proj">
+          <header>
+            <h3>EC2 → Fargate Migration</h3>
+            <span class="pill">Capital One</span>
+          </header>
+          <p>Migrated Java microservices from EC2 to ECS/Fargate; added autoscaling policies; wrote infra as code and deploy pipelines; improved reliability and costs.</p>
+          <div class="stack"><span class="pill">AWS</span><span class="pill">ECS/Fargate</span><span class="pill">Spring Boot</span><span class="pill">CloudWatch</span></div>
+          <div class="impact">-40% infra cost · p95 ↓ 22% · blue/green + rolling updates.</div>
+        </article>
+        <article class="proj">
+          <header>
+            <h3>Faster CI: xdist + coverage</h3>
+            <span class="pill">DevEx</span>
+          </header>
+          <p>Parallelized test suites with <code>pytest-xdist</code> and isolated tmp dirs; unified coverage HTML reports. Took jobs from 26m → 3m for big repos.</p>
+          <div class="stack"><span class="pill">Pytest</span><span class="pill">xdist</span><span class="pill">Coverage.py</span><span class="pill">GitLab CI</span></div>
+          <div class="impact">-88.5% runtime; faster feedback loops & fewer flaky tests.</div>
+        </article>
+        <article class="proj">
+          <header>
+            <h3>Observability Sidecar</h3>
+            <span class="pill">Prod</span>
+          </header>
+          <p>Automated multi‑destination log export (CloudWatch, CloudTrail, Splunk, OpenTelemetry) via sidecar container with filters and formats.</p>
+          <div class="stack"><span class="pill">Docker</span><span class="pill">OpenTelemetry</span><span class="pill">Splunk</span></div>
+          <div class="impact">Better incident response; clean log taxonomy for queries.</div>
+        </article>
+        <article class="proj">
+          <header>
+            <h3>Auto Watchman (Smart Parking)</h3>
+            <span class="pill">ML/CV</span>
+          </header>
+          <p>Computer‑vision approach to detect violations and generate structured events for enforcement workflows.</p>
+          <div class="stack"><span class="pill">PySpark</span><span class="pill">Python</span><span class="pill">CV</span></div>
+          <div class="impact">Manual enforcement ↓ 30% · 95% precision @ IoU 0.5 in pilot.</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="runbooks">
+      <div class="kicker">Cloud & DevOps Runbooks</div>
+      <h2>Copy‑paste friendly notes</h2>
+      <div class="grid cols-2">
+        <article class="proj runbook">
+          <header><h3>Speed up pytest with xdist</h3></header>
+          <p class="note">Parallel across cores. Beware of order‑dependent tests & shared state.</p>
+          <pre><code>pytest -n auto -q
+pytest --cov=my_package --cov-report=html -n auto
+coverage run -m pytest -n auto
+coverage html</code></pre>
+        </article>
+        <article class="proj runbook">
+          <header><h3>ECS/Fargate migration checklist</h3></header>
+          <pre><code>- Containerize service (multi-stage Dockerfile)
+- IAM: task role vs execution role
+- Task definition: CPU/mem, env, secrets, healthcheck
+- Service: desired count, deployment type (rolling/blue‑green)
+- Autoscaling: Target Tracking on CPU/ReqCount; warmup
+- ALB target group + path rules; health checks
+- Logs: CW logs JSON; metrics dashboards
+- CI: build, scan, push, deploy; canary then promote</code></pre>
+        </article>
+        <article class="proj runbook">
+          <header><h3>Better logs</h3></header>
+          <pre><code>- JSON logs with request_id, user_id, trace_id
+- Correlate: Propagate headers through services
+- Drop noisy health checks; sampling for debug
+- Ship to Splunk + OTEL; create golden queries</code></pre>
+        </article>
+        <article class="proj runbook">
+          <header><h3>Route 53 resilience</h3></header>
+          <pre><code>- Weighted + Latency-based records for multi-region
+- Health checks and failover; fast TTLs during incidents
+- S3 cross-region replication for critical buckets</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="logs">
+      <div class="kicker">Startup Log</div>
+      <h2>Building in public</h2>
+      <div class="proj">
+        <p><strong>2025‑08‑10:</strong> Portfolio v1 (Terminal Black & Neon) shipped. Next: auto‑generate OG images and plug MDX notes.</p>
+        <p><strong>2025‑08‑03:</strong> Wrote Playbooks section; converting scattered notes into copy‑paste runbooks.</p>
+      </div>
+    </section>
+
+    <section id="badminton">
+      <div class="kicker">Badminton Corner</div>
+      <h2>Stats & gear</h2>
+      <div class="proj">
+        <div class="grid cols-3">
+          <div><div class="pill">W–L</div><h3 style="margin-top:6px;">18–7</h3></div>
+          <div><div class="pill">Fastest smash</div><h3 style="margin-top:6px;">305 kph</h3></div>
+          <div><div class="pill">Racquet</div><h3 style="margin-top:6px;">Astrox 100ZZ · 3U</h3></div>
+        </div>
+        <p class="note">Weekend ladder in Austin. Always up for a game.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="kicker">Contact</div>
+      <h2>Let’s ship something brilliant</h2>
+      <p>Email: <a href="mailto:anwarshaik1999@gmail.com">anwarshaik1999@gmail.com</a> · Based in Austin, TX</p>
+      <div class="cta-row">
+        <a class="btn" href="https://github.com/anwarshaik1999" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/anwar-shaik1/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#" id="arcadeBtn">Toggle Arcade Mode</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Anwar Shaik · Terminal Black & Neon theme. Built with vanilla HTML/CSS/JS for GitHub Pages.
+    </footer>
+
+    <div class="scan hide" id="scan"></div>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tiny terminal router
+    const term = document.getElementById('term');
+    const cli = document.getElementById('cli');
+    const arcadeBtn = document.getElementById('arcadeBtn');
+
+    const COMMANDS = [
+      'help','whoami','about','projects','projects --top','runbooks list','github','linkedin','contact','arcade','clear'
+    ];
+
+    function write(line){
+      const div=document.createElement('div');div.textContent=line;term.appendChild(div);term.scrollTop=term.scrollHeight;
+    }
+    function commandHelp(){
+      write('Commands: '+COMMANDS.join(', '));
+    }
+    function go(id){
+      const el=document.querySelector(id);if(!el) return;el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    function arcadeToggle(){
+      document.body.classList.toggle('arcade');
+      document.getElementById('scan').classList.toggle('hide');
+    }
+    function handle(cmd){
+      switch(true){
+        case /^help$/.test(cmd): commandHelp(); break;
+        case /^whoami$/.test(cmd): write('Anwar Shaik — Software Engineer (AI/Cloud/DevOps), Austin TX'); break;
+        case /^about$/.test(cmd): write('→ Opening about…'); go('#about'); break;
+        case /^projects\s*--top$/.test(cmd): write('Top projects: ANPR, CAPTCHA OCR, Fargate Migration'); go('#projects'); break;
+        case /^projects$/.test(cmd): write('→ Opening projects…'); go('#projects'); break;
+        case /^runbooks(\s+list)?$/.test(cmd): write('Runbooks: pytest‑xdist · ecs‑fargate · logs · route53'); go('#runbooks'); break;
+        case /^github$/.test(cmd): write('Opening GitHub…'); window.open('https://github.com/anwarshaik1999','_blank'); break;
+        case /^linkedin$/.test(cmd): write('Opening LinkedIn…'); window.open('https://www.linkedin.com/in/anwar-shaik1/','_blank'); break;
+        case /^contact$/.test(cmd): write('Email: anwarshaik1999@gmail.com'); go('#contact'); break;
+        case /^arcade$/.test(cmd): arcadeToggle(); write('Arcade mode toggled'); break;
+        case /^clear$/.test(cmd): term.innerHTML=''; break;
+        default: write('command not found: '+cmd+' (try `help`)');
+      }
+    }
+
+    // History + Tab autocomplete
+    const history=[]; let hIdx=-1;
+    cli.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        const v=cli.value.trim(); if(!v) return; history.push(v); hIdx=history.length; write('$ '+v); handle(v); cli.value=''; return;
+      }
+      if(e.key==='ArrowUp'){
+        if(hIdx>0){ hIdx--; cli.value=history[hIdx] || ''; e.preventDefault(); }
+      }
+      if(e.key==='ArrowDown'){
+        if(hIdx < history.length){ hIdx++; cli.value=history[hIdx] || ''; e.preventDefault(); }
+      }
+      if(e.key==='Tab'){
+        e.preventDefault(); const pre=cli.value.trim(); if(!pre) return;
+        const match = COMMANDS.find(c=>c.startsWith(pre)); if(match) cli.value = match;
+      }
+    });
+
+    // Clickable chips -> run command
+    Array.from(document.querySelectorAll('.cmd-chip')).forEach(b=>{
+      b.addEventListener('click',()=>{ const cmd=b.dataset.cmd; write('$ '+cmd); handle(cmd); });
+    });
+
+    // Button for arcade
+    arcadeBtn && arcadeBtn.addEventListener('click', (e)=>{ e.preventDefault(); arcadeToggle(); });
+
+    // Konami code → arcade mode
+    (function(){
+      const seq=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let i=0;
+      window.addEventListener('keydown',(e)=>{if(e.key===seq[i]){i++;if(i===seq.length){arcadeToggle();i=0}}else{i=0}})
+    })();
+  </script>
+</body>
 </html>
