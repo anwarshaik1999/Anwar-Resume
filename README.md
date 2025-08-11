@@ -9,7 +9,7 @@ A hacker‑minimal personal site for my work in **AI, Cloud, and DevOps**—with
 From **India → USA**; currently in **Austin, Texas**. Outside of code, I’m a **gamer** and **badminton** nerd.
 
 **Live site:** `https://anwarshaik1999.github.io` (or `https://anwarshaik1999.github.io/<repo-name>` if this is a project page)  
-**Resume (PDF):** [`Anwar_Resume_Software_Engineer.pdf`](.Assets/Anwar_Resume_Software_Engineer.pdf)  
+**Resume (PDF):** [`Anwar_Resume_Software_Engineer.pdf`](.assets/Anwar_Resume_Software_Engineer.pdf)  
 **GitHub:** [@anwarshaik1999](https://github.com/anwarshaik1999) · **LinkedIn:** [/in/anwar-shaik1](https://www.linkedin.com/in/anwar-shaik1/)
 
 ---
@@ -55,7 +55,7 @@ clear
 .
 ├── index.html                 # Single-page site (Terminal Black & Neon)
 ├── Anwar_Resume_Software_Engineer.pdf
-└── Assets/
+└── assets/
     └── portrait.jpg           # Your photo (replace with your own)
 ```
 
@@ -79,7 +79,7 @@ python -m http.server 3000
 ## 🌐 Deploy to GitHub Pages
 
 **If this is your root site** (`<username>.github.io`):
-1. Push `index.html` (and the Assets) to `main`.
+1. Push `index.html` (and the assets) to `main`.
 2. Repo → **Settings** → **Pages** → Source: `main` → root.
 3. You’re live at `https://<username>.github.io`.
 
@@ -102,16 +102,16 @@ python -m http.server 3000
   }
   ```
 - **Content:** update the **Projects**, **Runbooks**, **Startup Log**, **Badminton** sections inside `index.html`.
-- **Images:** put your portrait at `Assets/portrait.jpg` (or change the `src` in the Avatar card).
+- **Images:** put your portrait at `assets/portrait.jpg` (or change the `src` in the Avatar card).
 - **Terminal commands:** extend the `COMMANDS` array and `handle(cmd)` function in the `<script>` section.
 
 ---
 
 ## 📸 Preview
 
-> Add a screenshot to `Assets/preview.png` and it’ll render here.
+> Add a screenshot to `assets/preview.png` and it’ll render here.
 
-![Preview](Assets/preview.png)
+![Preview](assets/preview.png)
 
 ---
 
