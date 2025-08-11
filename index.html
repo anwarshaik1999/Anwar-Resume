@@ -10,73 +10,58 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&family=VT323&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b0d10;           /* near-black */
-      --card:#0e1116;         /* deep slate */
-      --fg:#e8f0ff;           /* light text */
-      --muted:#9aa5b1;        /* secondary text */
-      --accent:#00ffc6;       /* neon cyan */
-      --accent-2:#00ff5e;     /* neon green */
-      --danger:#ff4d94;       /* neon magenta */
-      --ring:0 0 0 2px var(--accent),0 0 24px var(--accent);
-      --radius:16px;
-      --maxw:1080px;
-    }
+    :root{--bg:#0b0d10;--card:#0e1116;--fg:#e8f0ff;--muted:#9aa5b1;--accent:#00ffc6;--accent-2:#00ff5e;--danger:#ff4d94;--ring:0 0 0 2px var(--accent),0 0 24px var(--accent);--radius:16px;--maxw:1080px}
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 20% -10%,rgba(0,255,198,.08),transparent 55%),radial-gradient(900px 700px at 120% 0,rgba(0,255,94,.06),transparent 60%),var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Ubuntu,"Apple Color Emoji","Segoe UI Emoji";}
+    html,body{margin:0;height:100%;background:radial-gradient(1200px 800px at 20% -10%,rgba(0,255,198,.08),transparent 55%),radial-gradient(900px 700px at 120% 0,rgba(0,255,94,.06),transparent 60%),var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Ubuntu,"Apple Color Emoji","Segoe UI Emoji"}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px 120px}
-    header{display:flex;align-items:center;gap:18px;padding:14px 0;position:sticky;top:0;background:linear-gradient(180deg,rgba(11,13,16,.96),rgba(11,13,16,.70));backdrop-filter:saturate(1.2) blur(8px);z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
-    .brand{font-family:"JetBrains Mono",monospace;font-weight:800;letter-spacing:.5px}
+    header{display:flex;align-items:center;gap:12px;padding:14px 0;position:sticky;top:0;background:linear-gradient(180deg,rgba(11,13,16,.96),rgba(11,13,16,.70));backdrop-filter:saturate(1.2) blur(8px);z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
+    .brand{font-family:"JetBrains Mono",monospace;font-weight:800;letter-spacing:.5px;white-space:nowrap}
     .brand .cursor{display:inline-block;width:10px;height:20px;background:var(--accent);margin-left:4px;opacity:.85;animation:blink 1s steps(2,end) infinite}
     @keyframes blink{50%{opacity:.15}}
-    nav{margin-left:auto;display:flex;gap:18px;font-family:"JetBrains Mono",monospace;font-size:14px}
+    nav{display:flex;gap:18px;font-family:"JetBrains Mono",monospace;font-size:14px;align-items:center}
     nav a{opacity:.9}
+    #menuToggle{display:none;margin-left:auto;background:#0a0c0f;border:1px solid rgba(255,255,255,.16);color:var(--fg);padding:8px 10px;border-radius:10px;font-family:"JetBrains Mono",monospace}
+    #menuToggle:focus{outline:none;box-shadow:var(--ring)}
 
-    /* Hero Terminal */
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch;margin-top:24px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:0 8px 40px rgba(0,0,0,.25);}
-    .terminal{position:relative;padding:18px;border-radius:var(--radius);
-      /* Neon edge glow effect */
-      box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 28px rgba(0,255,198,.12)
-    }
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:0 8px 40px rgba(0,0,0,.25)}
+    .terminal{position:relative;padding:18px;border-radius:var(--radius);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 28px rgba(0,255,198,.12)}
     .terminal::after{content:"";position:absolute;inset:-2px;border-radius:var(--radius);background:radial-gradient(120% 60% at 0% 0%,rgba(0,255,198,.35),transparent 60%),radial-gradient(120% 60% at 100% 0%,rgba(0,255,94,.25),transparent 60%);filter:blur(14px);opacity:.45;animation:pulseGlow 4s ease-in-out infinite alternate;pointer-events:none}
     .terminal:hover::after{opacity:.75}
     @keyframes pulseGlow{from{opacity:.35}to{opacity:.7}}
 
     .term-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    .dot{width:10px;height:10px;border-radius:50%;}
+    .dot{width:10px;height:10px;border-radius:50%}
     .dot.red{background:#ff5f56}.dot.yellow{background:#ffbd2e}.dot.green{background:#27c93f}
-    .term-body{min-height:240px;font-family:"JetBrains Mono",monospace;font-size:14px;line-height:1.6;}
+    .term-body{min-height:240px;max-height:50vh;overflow:auto;font-family:"JetBrains Mono",monospace;font-size:14px;line-height:1.6}
     .prompt{color:var(--accent)}
     .input{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;margin-top:10px}
-    .input input{flex:1;background:#0a0c0f;border:1px solid rgba(255,255,255,.08);color:var(--fg);padding:10px 12px;border-radius:10px;font-family:"JetBrains Mono",monospace}
+    .input input{flex:1;background:#0a0c0f;border:1px solid rgba(255,255,255,.08);color:var(--fg);padding:12px;border-radius:10px;font-family:"JetBrains Mono",monospace}
     .input input:focus{outline:none;box-shadow:var(--ring)}
     .suggest{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .cmd-chip{cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+    .cmd-chip{cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
     .cmd-chip:hover{box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 22px rgba(0,255,198,.2) inset}
 
-    /* Avatar */
     .avatar{display:flex;align-items:center;justify-content:center;padding:20px}
     .avatar .frame{width:100%;max-width:360px;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(60% 60% at 50% 35%,rgba(0,255,198,.25),transparent),linear-gradient(140deg,#0f1320,#0b0d10 55%);border:2px solid rgba(255,255,255,.06);position:relative;box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(0,255,198,.18) inset}
     .avatar .frame img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:grayscale(.1) contrast(1.05)}
 
-    /* Sections */
     section{margin-top:48px}
-    h2{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:20px;letter-spacing:.4px;margin:6px 0 16px}
+    h2{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:clamp(18px,3.6vw,20px);letter-spacing:.4px;margin:6px 0 16px}
     .kicker{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2px}
     .grid{display:grid;gap:16px}
     @media(min-width:800px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
 
-    .proj{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));}
+    .proj{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00))}
     .proj header{position:relative;inset:auto;display:flex;gap:10px;background:transparent;border:none;padding:0}
     .proj h3{margin:0;font-size:17px}
     .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px;color:var(--muted)}
     .stack{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
     .impact{color:#b4ffea;font-family:"JetBrains Mono",monospace;font-size:12px;margin-top:6px}
 
-    .runbook pre, .proj pre{background:#0a0c0f;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;overflow:auto}
+    .runbook pre,.proj pre{background:#0a0c0f;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;overflow:auto}
     code{font-family:"JetBrains Mono",monospace}
 
     .note{color:var(--muted);font-size:14px}
@@ -84,43 +69,38 @@
 
     footer{margin-top:60px;padding:28px 8px;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:var(--muted);font-size:14px}
 
-    /* Arcade mode */
     .arcade *{text-shadow:0 0 8px rgba(0,255,198,.28)}
     .arcade .brand,.arcade h1,.arcade h2,.arcade h3{font-family:"VT323",monospace;letter-spacing:1px}
     .arcade .wrap{background-image:radial-gradient(800px 300px at 50% 0,rgba(0,255,94,.08),transparent)}
     .arcade .scan{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.35) 3px 3px)}
 
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);font-family:"JetBrains Mono",monospace}
     .btn:hover{box-shadow:0 0 0 2px rgba(255,255,255,.06),0 0 22px rgba(0,255,198,.2) inset}
 
     .hide{display:none}
+
+    /* Mobile tweaks */
+    @media (max-width: 720px){
+      .wrap{padding:18px 14px 80px}
+      .hero{grid-template-columns:1fr}
+      .term-body{min-height:180px;max-height:44vh}
+      .avatar .frame{max-width:220px}
+      .suggest{gap:6px}
+      .cmd-chip{padding:8px 10px}
+      .cta-row{flex-direction:column}
+      .btn{justify-content:center;width:100%}
+      #menuToggle{display:inline-flex}
+      nav{position:absolute;right:14px;top:56px;display:none;flex-direction:column;gap:12px;padding:12px;background:rgba(11,13,16,.98);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+      header.active nav{display:flex}
+    }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Anwar Shaik",
-    "jobTitle":"Software Engineer",
-    "email":"mailto:anwarshaik1999@gmail.com",
-    "address":{"@type":"PostalAddress","addressLocality":"Austin","addressRegion":"TX","addressCountry":"US"},
-    "url":"https://anwarshaik1999.github.io",
-    "knowsAbout":["AI","Machine Learning","Computer Vision","AWS","DevOps","Java","Spring Boot","React","Next.js","Docker","Kubernetes"],
-    "sameAs":["https://github.com/anwarshaik1999","https://www.linkedin.com/in/anwar-shaik1/"]
-  }
-  </script>
 </head>
 <body>
-  <header class="wrap">
+  <header class="wrap" id="siteHeader">
     <div class="brand">anwar@portfolio:~$ <span class="cursor"></span></div>
-    <nav>
-      <a href="#about">about</a>
-      <a href="#projects">projects</a>
-      <a href="#runbooks">runbooks</a>
-      <a href="#logs">startup-log</a>
-      <a href="#badminton">badminton</a>
-      <a href="#contact">contact</a>
-    </nav>
+    <nav id="siteNav" aria-label="Primary"></nav>
+    <button id="menuToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle menu">☰ Menu</button>
   </header>
 
   <main class="wrap">
@@ -153,13 +133,13 @@
         </div>
         <div class="cta-row">
           <a class="btn" href="#projects">▶ View projects</a>
-          <a class="btn" href="Assets/Anwar_Resume_Software_Engineer.pdf">⬇ Resume (PDF)</a>
+          <a class="btn" href="Anwar_Resume_Software_Engineer.pdf">⬇ Resume (PDF)</a>
         </div>
       </div>
 
       <div class="card avatar">
         <div class="frame">
-          <img src="Assets/portrait.jpg" alt="Portrait of Anwar Shaik">
+          <img src="assets/portrait.jpg" alt="Portrait of Anwar Shaik">
         </div>
       </div>
     </section>
@@ -318,31 +298,33 @@ coverage html</code></pre>
   </main>
 
   <script>
+    // Build the nav so the same links work for desktop & mobile menu
+    (function(){
+      const nav = document.getElementById('siteNav');
+      const links = [ ['#about','about'], ['#projects','projects'], ['#runbooks','runbooks'], ['#logs','startup-log'], ['#badminton','badminton'], ['#contact','contact'] ];
+      links.forEach(([href,label])=>{ const a=document.createElement('a'); a.href=href; a.textContent=label; nav.appendChild(a); });
+    })();
+
+    // Mobile menu toggle
+    const siteHeader = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const siteNav = document.getElementById('siteNav');
+    menuToggle.addEventListener('click', ()=>{ const open = siteHeader.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+    siteNav.addEventListener('click', (e)=>{ if(e.target.tagName==='A' && siteHeader.classList.contains('active')){ siteHeader.classList.remove('active'); menuToggle.setAttribute('aria-expanded','false'); } });
+
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Tiny terminal router
+    // Terminal router
     const term = document.getElementById('term');
     const cli = document.getElementById('cli');
     const arcadeBtn = document.getElementById('arcadeBtn');
+    const COMMANDS = ['help','whoami','about','projects','projects --top','runbooks list','github','linkedin','contact','arcade','clear'];
 
-    const COMMANDS = [
-      'help','whoami','about','projects','projects --top','runbooks list','github','linkedin','contact','arcade','clear'
-    ];
-
-    function write(line){
-      const div=document.createElement('div');div.textContent=line;term.appendChild(div);term.scrollTop=term.scrollHeight;
-    }
-    function commandHelp(){
-      write('Commands: '+COMMANDS.join(', '));
-    }
-    function go(id){
-      const el=document.querySelector(id);if(!el) return;el.scrollIntoView({behavior:'smooth',block:'start'});
-    }
-    function arcadeToggle(){
-      document.body.classList.toggle('arcade');
-      document.getElementById('scan').classList.toggle('hide');
-    }
+    function write(line){ const div=document.createElement('div'); div.textContent=line; term.appendChild(div); term.scrollTop=term.scrollHeight; }
+    function commandHelp(){ write('Commands: '+COMMANDS.join(', ')); }
+    function go(id){ const el=document.querySelector(id); if(!el) return; el.scrollIntoView({behavior:'smooth',block:'start'}); }
+    function arcadeToggle(){ document.body.classList.toggle('arcade'); document.getElementById('scan').classList.toggle('hide'); }
     function handle(cmd){
       switch(true){
         case /^help$/.test(cmd): commandHelp(); break;
@@ -366,12 +348,8 @@ coverage html</code></pre>
       if(e.key==='Enter'){
         const v=cli.value.trim(); if(!v) return; history.push(v); hIdx=history.length; write('$ '+v); handle(v); cli.value=''; return;
       }
-      if(e.key==='ArrowUp'){
-        if(hIdx>0){ hIdx--; cli.value=history[hIdx] || ''; e.preventDefault(); }
-      }
-      if(e.key==='ArrowDown'){
-        if(hIdx < history.length){ hIdx++; cli.value=history[hIdx] || ''; e.preventDefault(); }
-      }
+      if(e.key==='ArrowUp'){ if(hIdx>0){ hIdx--; cli.value=history[hIdx] || ''; e.preventDefault(); } }
+      if(e.key==='ArrowDown'){ if(hIdx < history.length){ hIdx++; cli.value=history[hIdx] || ''; e.preventDefault(); } }
       if(e.key==='Tab'){
         e.preventDefault(); const pre=cli.value.trim(); if(!pre) return;
         const match = COMMANDS.find(c=>c.startsWith(pre)); if(match) cli.value = match;
@@ -379,18 +357,13 @@ coverage html</code></pre>
     });
 
     // Clickable chips -> run command
-    Array.from(document.querySelectorAll('.cmd-chip')).forEach(b=>{
-      b.addEventListener('click',()=>{ const cmd=b.dataset.cmd; write('$ '+cmd); handle(cmd); });
-    });
+    Array.from(document.querySelectorAll('.cmd-chip')).forEach(b=>{ b.addEventListener('click',()=>{ const cmd=b.dataset.cmd; write('$ '+cmd); handle(cmd); }); });
 
     // Button for arcade
     arcadeBtn && arcadeBtn.addEventListener('click', (e)=>{ e.preventDefault(); arcadeToggle(); });
 
     // Konami code → arcade mode
-    (function(){
-      const seq=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let i=0;
-      window.addEventListener('keydown',(e)=>{if(e.key===seq[i]){i++;if(i===seq.length){arcadeToggle();i=0}}else{i=0}})
-    })();
+    (function(){ const seq=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"]; let i=0; window.addEventListener('keydown',(e)=>{ if(e.key===seq[i]){ i++; if(i===seq.length){ arcadeToggle(); i=0 } } else { i=0 } })})();
   </script>
 </body>
 </html>
