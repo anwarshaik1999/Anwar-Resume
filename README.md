@@ -55,7 +55,7 @@ clear
 .
 ├── index.html                 # Single-page site (Terminal Black & Neon)
 ├── Anwar_Resume_Software_Engineer.pdf
-└── assets/
+└── Assets/
     └── portrait.jpg           # Your photo (replace with your own)
 ```
 
@@ -79,7 +79,7 @@ python -m http.server 3000
 ## 🌐 Deploy to GitHub Pages
 
 **If this is your root site** (`<username>.github.io`):
-1. Push `index.html` (and the assets) to `main`.
+1. Push `index.html` (and the Assets) to `main`.
 2. Repo → **Settings** → **Pages** → Source: `main` → root.
 3. You’re live at `https://<username>.github.io`.
 
@@ -102,16 +102,16 @@ python -m http.server 3000
   }
   ```
 - **Content:** update the **Projects**, **Runbooks**, **Startup Log**, **Badminton** sections inside `index.html`.
-- **Images:** put your portrait at `assets/portrait.jpg` (or change the `src` in the Avatar card).
+- **Images:** put your portrait at `Assets/portrait.jpg` (or change the `src` in the Avatar card).
 - **Terminal commands:** extend the `COMMANDS` array and `handle(cmd)` function in the `<script>` section.
 
 ---
 
 ## 📸 Preview
 
-> Add a screenshot to `assets/preview.png` and it’ll render here.
+> Add a screenshot to `Assets/preview.png` and it’ll render here.
 
-![Preview](assets/preview.png)
+![Preview](Assets/preview.png)
 
 ---
 
