@@ -86,15 +86,11 @@ python -m http.server 3000
     --accent-2: #00ff5e;/* green */
   }
   ```
-- **Content:** update the **Projects**, **Runbooks**, **Startup Log**, **Badminton** sections inside `index.html`.
-- **Images:** put your portrait at `assets/portrait.jpg` (or change the `src` in the Avatar card).
 - **Terminal commands:** extend the `COMMANDS` array and `handle(cmd)` function in the `<script>` section.
 
 ---
 
 ## 📸 Preview
-
-> Add a screenshot to `assets/preview.png` and it’ll render here.
 
 ![Preview](assets/preview.png)
 
