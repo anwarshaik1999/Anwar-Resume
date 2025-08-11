@@ -8,7 +8,7 @@
 A hacker‑minimal personal site for my work in **AI, Cloud, and DevOps**—with a playful terminal on the homepage.  
 From **India → USA**; currently in **Austin, Texas**. Outside of code, I’m a **gamer** and **badminton** nerd.
 
-**Live site:** `https://anwarshaik1999.github.io/anwar-portfolio/`)  
+**Live site:** (`https://anwarshaik1999.github.io/anwar-portfolio/`)  
 **Resume (PDF):** [`Anwar_Resume_Software_Engineer.pdf`](.assets/Anwar_Resume_Software_Engineer.pdf)  
 **GitHub:** [@anwarshaik1999](https://github.com/anwarshaik1999) · **LinkedIn:** [/in/anwar-shaik1](https://www.linkedin.com/in/anwar-shaik1/)
 
@@ -66,8 +66,8 @@ clear
 ## 🚀 Run locally
 
 ```bash
-git clone https://github.com/<you>/<this-repo>.git
-cd <this-repo>
+git clone https://github.com/anwarshaik1999/anwar-portfolio.git
+cd anwar-portfolio
 # Option A: open index.html directly in your browser
 # Option B (nicer URLs): serve the folder
 python -m http.server 3000
@@ -76,21 +76,6 @@ python -m http.server 3000
 
 ---
 
-## 🌐 Deploy to GitHub Pages
-
-**If this is your root site** (`<username>.github.io`):
-1. Push `index.html` (and the assets) to `main`.
-2. Repo → **Settings** → **Pages** → Source: `main` → root.
-3. You’re live at `https://<username>.github.io`.
-
-**If this is a project site** (anything else):
-1. Push to `main`.
-2. Repo → **Settings** → **Pages** → Source: `main` → root or `/docs`.
-3. Your URL will be `https://<username>.github.io/<repo-name>`.
-
-> Using a **custom domain**? Add it under Settings → Pages and commit a `CNAME` file at repo root.
-
----
 
 ## 🛠 Customize
 
