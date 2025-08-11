@@ -8,7 +8,7 @@
 A hacker‑minimal personal site for my work in **AI, Cloud, and DevOps**—with a playful terminal on the homepage.  
 From **India → USA**; currently in **Austin, Texas**. Outside of code, I’m a **gamer** and **badminton** nerd.
 
-**Live site:** `https://anwarshaik1999.github.io` (or `https://anwarshaik1999.github.io/<repo-name>` if this is a project page)  
+**Live site:** `https://anwarshaik1999.github.io/anwar-portfolio/`)  
 **Resume (PDF):** [`Anwar_Resume_Software_Engineer.pdf`](.assets/Anwar_Resume_Software_Engineer.pdf)  
 **GitHub:** [@anwarshaik1999](https://github.com/anwarshaik1999) · **LinkedIn:** [/in/anwar-shaik1](https://www.linkedin.com/in/anwar-shaik1/)
 
